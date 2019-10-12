@@ -1,0 +1,14 @@
+## avsu username
+#username=123123
+## avsu password
+#password=pss123123
+## avsu pupilId
+#pupilId=12323232
+## Telegram bot token
+##telegaToken=ASDU093JOIF09IPOSDQP09RALSJ
+## Telegram chat ID
+#telegaChatId=12333
+## Hour grab begin from
+#hourBegin=9
+## Hour grab before
+#hourEnd=15
