@@ -12,7 +12,7 @@ object MainScheduler {
     init {
         Timer().schedule(
             1000,
-            10*60*10000
+            10*60*1000 // period 10 minutes
         ) {
             try {
                 avsuRunner.runProcess()
