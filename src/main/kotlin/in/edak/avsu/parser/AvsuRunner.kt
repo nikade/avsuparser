@@ -1,5 +1,6 @@
 package `in`.edak.avsu.parser
 
+import `in`.edak.messages.MqttSender
 import `in`.edak.messages.Telega
 import `in`.edak.messages.TelegaTopic
 import `in`.edak.messages.Topic
@@ -25,6 +26,15 @@ class AvsuRunner{
                 proxyPassword = PropertiesObj.proxyPassword
             )
             topics.add(TelegaTopic(PropertiesObj.telegaToken!!, PropertiesObj.telegaChatId!!, telegaMessagging))
+        }
+
+        if(PropertiesObj.mqttBrokerUrl != null && PropertiesObj.mqttClientId !=null && PropertiesObj.mqttQueue != null) {
+            val mqttSender = MqttSender(
+                PropertiesObj.mqttBrokerUrl!!,
+                PropertiesObj.mqttClientId!!,
+                PropertiesObj.mqttUsername,
+                PropertiesObj.mqttPassword)
+            topics.add(mqttSender.getTopic(PropertiesObj.mqttQueue!!))
         }
     }
 

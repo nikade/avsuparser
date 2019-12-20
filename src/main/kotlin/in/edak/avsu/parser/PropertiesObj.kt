@@ -19,6 +19,11 @@ object PropertiesObj {
     var proxyPort: Int? = null
     var proxyUsername: String? = null
     var proxyPassword: String? = null
+    var mqttBrokerUrl: String? = null
+    var mqttClientId: String? = null
+    var mqttQueue: String? = null
+    var mqttUsername: String? = null
+    var mqttPassword: String? = null
 
     init {
         val properties = Properties()
@@ -29,7 +34,7 @@ object PropertiesObj {
             propertiesInputSteam = javaClass.classLoader.getResourceAsStream(PROPERTIES_FILENAME)
         }
         if(propertiesInputSteam == null) throw RuntimeException("could not load ${PROPERTIES_FILENAME}")
-        properties.load(propertiesInputSteam)
+        properties.load(propertiesInputSteam.reader(Charsets.UTF_8))
         username = properties.get("username") as String
         password = properties.get("password") as String
         pupilId = (properties.get("pupilId") as String).toLong()
@@ -41,6 +46,11 @@ object PropertiesObj {
         proxyPort = (properties.get("proxyPort") as String?)?.toInt()
         proxyUsername = properties.get("proxyUsername") as String?
         proxyPassword = properties.get("proxyPassword") as String?
+        mqttBrokerUrl = properties.get("mqtt.brokerUrl") as String?
+        mqttClientId = properties.get("mqtt.clientId") as String?
+        mqttQueue = properties.get("mqtt.queue") as String?
+        mqttUsername = properties.get("mqtt.clientUser") as String?
+        mqttPassword = properties.get("mqtt.clientPassword") as String?
     }
 
 }

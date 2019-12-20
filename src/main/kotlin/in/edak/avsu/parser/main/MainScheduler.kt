@@ -7,9 +7,12 @@ import kotlin.concurrent.schedule
 
 
 object MainScheduler {
-    val avsuRunner = AvsuRunner()
+    private lateinit var avsuRunner: AvsuRunner
 
-    init {
+    @JvmStatic
+    fun main(args: Array<String>) {
+        Thread.sleep(60000)
+        avsuRunner = AvsuRunner()
         Timer().schedule(
             1000,
             10*60*1000 // period 10 minutes
@@ -20,10 +23,7 @@ object MainScheduler {
                 e.printStackTrace()
             }
         }
-    }
 
-    @JvmStatic
-    fun main(args: Array<String>) {
         Thread.currentThread().join()
     }
 }
